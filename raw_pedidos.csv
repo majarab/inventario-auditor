@@ -1,0 +1,427 @@
+PEDIDO 001,,,,,2026-09-17,
+Jaspre Mayorista ,,,,,,
+CLIENTE: OSCAR TARAPOTO,,,,,,
+NRO,Cantidad ,Producto ,Precio,igv,Precio Uni,Total
+1,2,Iso Whey Un 1kg ,88,15.84,103.84,207.68
+2,2,Nitro Whey Un 1kg,70,12.6,82.6,165.2
+3,2,Creatina Un,75,13.5,88.5,177
+4,2,Creatinas Suprime,75,13.5,88.5,177
+5,2,Power Proteín Herbal Natural ,65,11.7,76.7,153.4
+6,2,Actimax Sure Herbal Natural ,65,11.7,76.7,153.4
+7,1,Iso Hydro Suprime 1 kg,185,33.3,218.3,218.3
+8,2,Omega 3 Sundance ,65,11.7,76.7,153.4
+9,2,B12 Sundance,65,11.7,76.7,153.4
+10,2,Vitamina C Sundance,65,11.7,76.7,153.4
+11,2,Complejo B Sundanse,55,9.9,64.9,129.8
+12,1,D3 + K2 Masón,65,11.7,76.7,76.7
+13,2,Vitatrum Mason.,65,11.7,76.7,153.4
+14,2,Calcio Magnesio Zin Mason,35,6.3,41.3,82.6
+15,2,Melatonina Mason,50,9,59,118
+16,2,Biotina 10000 Mason,85,15.3,100.3,200.6
+17,1,Super Flex Extralife ,75,13.5,88.5,88.5
+18,2,HGH Extralife,135,24.3,159.3,318.6
+19,2,Myo Inositol de Oriundus ,50,9,59,118
+20,2,Glicinato de Magnesio Oriundos,35,6.3,41.3,82.6
+21,2,Melena de León Denative ,50,9,59,118
+22,2,Cardosil Denative ,50,9,59,118
+23,2,Nad + Resveratrol Nanita,40,7.2,47.2,94.4
+24,2,Berberina Nanita,50,9,59,118
+25,2,Prunex,36,6.48,42.48,84.96
+26,2,Termo T3,65,11.7,76.7,153.4
+27,2,Flora Liv,75,13.5,88.5,177
+28,2,Nocart,65,11.7,76.7,153.4
+29,2,Vita extra,65,11.7,76.7,153.4
+30,2,Beauty Fuxion,88,15.84,103.84,207.68
+31,1,2 en 1 DXN,65,11.7,76.7,76.7
+32,1,3 en 1 DXN,65,11.7,76.7,76.7
+33,1,Cocoshi Dxn,85,15.3,100.3,100.3
+34,1,Vita Cafe DXN,85,15.3,100.3,100.3
+35,2,Citrato de Magnesio Maggy 1/4,20,3.6,23.6,47.2
+36,2,Citrato de Potasio Maggy 1/4,35,6.3,41.3,82.6
+37,2,Glicinato de Magnesio Maggy,40,7.2,47.2,94.4
+38,2,Melena de León en polvo Wasay,35,6.3,41.3,82.6
+39,2,Citrato de Magnesio Herbal Natural ,25,4.5,29.5,59
+40,2,Magnesio + Potasio Herbal Natural ,25,4.5,29.5,59
+41,2,Colágenos Peptidos,75,13.5,88.5,177
+42,2,Colágeno Renová,70,12.6,82.6,165.2
+43,2,Cap Prostalife,50,9,59,118
+44,2,Cap Bioprost Americana,30,5.4,35.4,70.8
+45,2,Centella Asiática Oragel,50,9,59,118
+46,6,colágenos Herbal Natural surtidos ,60,10.8,70.8,424.8
+47,10,Gummix surtidas,40,7.2,47.2,472
+48,2,Aceite de coco Healt Natural 1kg,60,10.8,70.8,141.6
+49,2,Aceite de coco Healt 500g,30,5.4,35.4,70.8
+50,2,Aceite de coco Healt 1/4,20,3.6,23.6,47.2
+51,2,Estevias de País x 66g,20,3.6,23.6,47.2
+52,2,Estevias de País x 200g.,50,9,59,118
+53,2,Estevia Nacional ,12,2.16,14.16,28.32
+54,2,Vinagre de Manzana 1 L F/S,12,2.16,14.16,28.32
+55,2,Vinagre de Manzana 1/2 F/s,6.5,1.17,7.67,15.34
+56,2,Vinagre de Manzana Eco Valle,14,2.52,16.52,33.04
+57,2,Clorofila Herbal Natural,23,4.14,27.14,54.28
+58,2,Vuoto Herbal Natural,40,7.2,47.2,94.4
+59,2,Citrato de Potasio Herbal Natural ,25,4.5,29.5,59
+60,1,Bisglicinato de Zinc Edenis,60,10.8,70.8,70.8
+61,1,Inositol Capsula Edenis,80,14.4,94.4,94.4
+62,2,Cap de Espirulina Eco Valle,35,6.3,41.3,82.6
+63,2,Cap Curcuma Eco Valle ,22,3.96,25.96,51.92
+64,2,Cap Magnesio Complex Vital Mixx,35,6.3,41.3,82.6
+65,2,Cap Magnesio Complex Toplos,35,6.3,41.3,82.6
+66,2,Cap Bicitrato Nutravias,25,4.5,29.5,59
+67,2,Aceite de Clavo de Olor EcoValle,25,4.5,29.5,59
+68,2,Aceite de Romero Eco Valle,28,5.04,33.04,66.08
+69,2,Aceite de Menta EcoValle,25,4.5,29.5,59
+70,2,Bebida de Arandano EcoValle,17,3.06,20.06,40.12
+71,2,Aceite de Recino EcoValle,20,3.6,23.6,47.2
+72,1,Aceite de Moringa EcoValle,33,5.94,38.94,38.94
+73,2,Gomas Melatonina NNf,40,7.2,47.2,94.4
+74,2,Gomas de asawanda nnf,40,7.2,47.2,94.4
+75,1,Cap Bisglicinato de Magnesio Heal Natural ,50,9,59,59
+76,2,Cap Citrato de Magnesio Healt Natural,30,5.4,35.4,70.8
+77,2,Cap Citrato de Potasio Healt Natural,35,6.3,41.3,82.6
+78,1,Cap Melena de León Healt Natural,50,9,59,59
+79,2,Cap Asawanda Healt Natural ,50,9,59,118
+80,2,Cap Castaña de Indias Maranao,40,7.2,47.2,94.4
+81,2,Cap Saw Palmeto Maranao,40,7.2,47.2,94.4
+82,2,Cap Bioaguaje Maggy,40,7.2,47.2,94.4
+83,2,Cap Resveratrol Maggy,40,7.2,47.2,94.4
+84,2,Cap Bioprost Natural Maxx,25,4.5,29.5,59
+85,2,Cap Maca negra Natural Maxx,15,2.7,17.7,35.4
+86,2,Cap Café verde Natural Maxx,25,4.5,29.5,59
+87,2,Cap Fenogreco Natural Maxx,20,3.6,23.6,47.2
+88,2,Cap Cardo Mariano Natural Maxx,25,4.5,29.5,59
+89,2,Cap Biotin Natural Maxx,25,4.5,29.5,59
+90,2,Cap Isoflavones Natural Maxx,25,4.5,29.5,59
+91,2,Cap Aguaje Natural Maxx,18,3.24,21.24,42.48
+92,2,Cap Curcuma /pimienta natural maxx,18,3.24,21.24,42.48
+93,2,Cap Maca Roja Natural Maxx,18,3.24,21.24,42.48
+94,2,Cap Asawanda Oragel ,50,9,59,118
+95,2,Cap Axtaxantina Oragel ,60,10.8,70.8,141.6
+96,2,Cap Omega 369 Natural Maxx,35,6.3,41.3,82.6
+97,4,Colágenos Amerilab Surtidos,70,12.6,82.6,330.4
+98,2,Glutamina Un,75,13.5,88.5,177
+99,2,Flexaxil Ultra Fito Center 600g,70,12.6,82.6,165.2
+100,2,Resveratrol Fito Center 600g,70,12.6,82.6,165.2
+101,2,Magne Vit Citrato de Magnesio Fito Sana polvo,25,4.5,29.5,59
+102,2,Carbón Activado BioCenter 200g,20,3.6,23.6,47.2
+103,2,HEPA Fit Caja Fito Center,40,7.2,47.2,94.4
+104,2,Shupa Panza Pote 350g Natural Maxx,40,7.2,47.2,94.4
+105,1,Creatina Dragón Pharma,75,13.5,88.5,88.5
+106,1,Creatina Rony Coleman,75,13.5,88.5,88.5
+107,2,Café con Melena de León Natural Maxx,50,9,59,118
+108,2,Estevias Coronel ,50,9,59,118
+109,2,Colágeno Nani Gel ,88,15.84,103.84,207.68
+110,2,Gelatina sin sabor  250g,12,2.16,14.16,28.32
+111,2,"Vitamina B12, B2, B9",80,14.4,94.4,188.8
+112,2,cebo de res,25,4.5,29.5,59
+113,2,Levadura Nutricional ,35,6.3,41.3,82.6
+114,2,Creatina Monverd ,60,10.8,70.8,141.6
+115,2,Colágenos Peptidos  Pharma Account,80,14.4,94.4,188.8
+116,2,Parches de Pies ,5,0.9,5.9,11.8
+117,2,Gelatina sin sabor Galindo 500g,30,5.4,35.4,70.8
+118,2,Nad + Resveratrol Fito Center Pote ,45,8.1,53.1,106.2
+119,8,Quemadores XB ,13,2.34,15.34,122.72
+120,2,Curcumax,6.5,1.17,7.67,15.34
+121,2,Chía 1/4 la salud,6,1.08,7.08,14.16
+122,2,Canela ,6.5,1.17,7.67,15.34
+123,2,Harina de Almendra ,12,2.16,14.16,28.32
+124,1,Harina de Arroz,6.5,1.17,7.67,7.67
+125,2,Harina Tocosh ,6.5,1.17,7.67,15.34
+126,2,harina de tarwi ,8.5,1.53,10.03,20.06
+127,2,Sal Maras,7,1.26,8.26,16.52
+128,2,Panelas ,8,1.44,9.44,18.88
+129,2,Sal Epson,10,1.8,11.8,23.6
+130,2,Harina de Moringa ,6.5,1.17,7.67,15.34
+131,2,Harina de Algarrobo ,8.5,1.53,10.03,20.06
+132,1,Detox Fuxion ,95,17.1,112.1,112.1
+133,1,Pack 5/14,220,39.6,259.6,259.6
+,,,,,SUB TOTAL,13495.07
+,,,,,MOTO 1 CAJA,20
+,,,,,MOTO 2 CAJAS,40
+,,,,,TOTAL,13555.07
+,,,,,,
+,24 SEP 2026,DEPOSITO NUMERO 0159266,5000,,,
+,25 SEP 2026,DEPOSITO NUMERO 0221030,9065,,,
+,,TOTAL DEPOSITADO,14065,,,
+,,,,,,
+,,SALDO  FAVOR,509.93,,,
+,,,,,,
+,,,,,,
+,,,,,,
+PEDIDIO 002,,,,,2026-10-14,
+,,DESTINO,,,CHALA ,
+,Jaspre Mayorista ,,,,,
+,1,PANETONES HONGOS DEL BOSQUE CAJA,35,6.3,41.3,41.3
+,1,PANETON HONGOS DEL BOSQUE CILINDRO,35,6.3,41.3,41.3
+,1,PANETON HONGOS DEL BOSQUE BOLSA ,30,5.4,35.4,35.4
+,,,,,SUB TOTAL,118
+,,,,,MOTO 1 CAJA,20
+,,,,,TOTAL,138
+,,,,,,
+,,SALDO A FAVOR ANTERIOR,509.93,,,
+,,TOTAL ENVIO,138,,,
+,,SALDO A FAVOR ACTUAL,371.93,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+PEDIDIO 003,,,,,2026-10-27,
+,,DESTINO,,,TARAPOTO,
+,Jaspre Mayorista ,,,,,
+,Cotización Oscar - Tarapoto,,,,,
+NRO,Cantidad ,Producto ,Precio,igv,Precio Uni,Total
+1,2,Herbal Kids,25,4.5,29.5,59
+2,2,Glicinato de magnesio de 200 gramos Nanita,40,7.2,47.2,94.4
+3,2,Treonato de magnesio de 250 gramos Nanita,40,7.2,47.2,94.4
+4,2,Taurato de magnesio de 200 gramos Nanita,40,7.2,47.2,94.4
+5,2,Magne Total de 250 gramos Nanita,40,7.2,47.2,94.4
+6,2,Colágeno Forza 9 en 1 pote,45,8.1,53.1,106.2
+7,2,Colágeno Belladona Forza pote,45,8.1,53.1,106.2
+8,2,Colágeno de biotina Forza pote,45,8.1,53.1,106.2
+9,1,Vitamina C liposomal americana,150,27,177,177
+10,1,Picolinato de zinc americano,100,18,118,118
+11,1,Citrulina,100,18,118,118
+12,2,Fibra Blon Oriundos,60,10.8,70.8,141.6
+13,1,Flora interior caja,150,27,177,177
+14,2,Aceite de oliva de un litro,28,5.04,33.04,66.08
+15,2,Aceite de oliva de medio litro,18,3.24,21.24,42.48
+16,2,Aceite de oliva de un cuarto,10,1.8,11.8,23.6
+17,2,Crema Flexacil Ultra,25,4.5,29.5,59
+18,2,Cápsulas de espirulina Bioandes,40,7.2,47.2,94.4
+19,2,Teo Energy,75,13.5,88.5,177
+20,2,Magnus,80,14.4,94.4,188.8
+21,2,Garcinia gamboja caja,68,12.24,80.24,160.48
+22,2,Garcinia gamboja pote,68,12.24,80.24,160.48
+23,2,Champú Caíta naranja,20,3.6,23.6,47.2
+24,2,Champú Caíta morado,20,3.6,23.6,47.2
+25,2,Champú Caíta negro,20,3.6,23.6,47.2
+26,2,Acondicionador Caíta,20,3.6,23.6,47.2
+27,2,Champú romero Yomi,20,3.6,23.6,47.2
+28,2,Champú cebolla Yomi,20,3.6,23.6,47.2
+29,2,Champú sábila Yomi,20,3.6,23.6,47.2
+30,2,Levadura de cerveza Equanatu de un kilo,50,9,59,118
+31,2,Levadura de cerveza FITO CENTER,25,4.5,29.5,59
+32,1,Células madre frasco,35,6.3,41.3,41.3
+33,2,Crema dental probiótico HGW,24,4.32,28.32,56.64
+34,2,Crema dental verde HGW,24,4.32,28.32,56.64
+35,2,Crema dental turmalina HGW,24,4.32,28.32,56.64
+36,2,Magnesol naranja,28,5.04,33.04,66.08
+37,2,Magnesol celeste,21,3.78,24.78,49.56
+38,2,Magnesol limón,28,5.04,33.04,66.08
+39,2,Bicarbonato de sodio de 500 gramos Campo Natural,12,2.16,14.16,28.32
+40,2,Bicarbonato grado oral Magifarma,12,2.16,14.16,28.32
+41,2,Aceite de oliva Basconti,38,6.84,44.84,89.68
+42,2,Colágeno GardanLife azul,70,12.6,82.6,165.2
+43,2,Colágeno GardanLife rosado,70,12.6,82.6,165.2
+44,2,Lebasi,70,12.6,82.6,165.2
+45,2,Calostro bovino,65,11.7,76.7,153.4
+46,6,Extractos Fitosana surtidos,12,2.16,14.16,84.96
+47,6,Extractos Bionaturista surtidos,22,3.96,25.96,155.76
+48,2,Célula madre Monvert,60,10.8,70.8,141.6
+49,2,Colágenos biopéptidos Monvert,80,14.4,94.4,188.8
+50,3, kiwicha pop 250g,5.5,0.99,6.49,19.47
+51,3,Cañihua pop 250g,5.5,0.99,6.49,19.47
+52,3,Quinoa pop 250g,5.5,0.99,6.49,19.47
+53,3,Mix pop 250g,5.5,0.99,6.49,19.47
+54,2,Paquetes de rosca de ajonjolí,6.5,1.17,7.67,15.34
+55,2,Tiras de choco más,6,1.08,7.08,14.16
+56,2,Tiras de cono de chocolate Vida Light,7.5,1.35,8.85,17.7
+57,2,Tiras de chicharrón de soya,5,0.9,5.9,11.8
+58,2,Tiras de palito de yuca,8.5,1.53,10.03,20.06
+59,3,Galletas de arroz integral Bella Abanquina,7.5,1.35,8.85,26.55
+60,2,Tiras de quinoa chip,16,2.88,18.88,37.76
+61,3,Cajas de galletas surtidas NutriH,36,6.48,42.48,127.44
+62,2,Cajas de Salmas chía y linaza,7.5,1.35,8.85,17.7
+63,2,Cajas de Salmas zanahoria,7.5,1.35,8.85,17.7
+64,2,Cajas de Salmas de maíz por 7 unidades,7.5,1.35,8.85,17.7
+65,2,Cajas de Salmas de maíz por 12 unidades,12,2.16,14.16,28.32
+66,4,Cajas de Iso Whey,35,6.3,41.3,165.2
+67,4,Cajas de Nitro Whey,25,4.5,29.5,118
+68,4,Cajas de Bigm,25,4.5,29.5,118
+69,2,Cajas de efervescente hierro,30,5.4,35.4,70.8
+70,2,Cajas de efervescente citrato de magnesio Lactuperfud,30,5.4,35.4,70.8
+71,2,Cajas de efervescente citrato de magnesio sabor piña Lactuperfud,30,5.4,35.4,70.8
+72,2,Cajas de efervescente zinc de Lactuperfud,30,5.4,35.4,70.8
+73,2,Cajas de magnesio Complex de Lactuperfud,30,5.4,35.4,70.8
+74,2,Asawanda Nutravias en gotas,40,7.2,47.2,94.4
+75,2,Melena de león Nutravias en gotas,40,7.2,47.2,94.4
+76,2,Aceite de ricino Nanita,25,4.5,29.5,59
+77,2,Líbido fem Nutravias gotas,40,7.2,47.2,94.4
+78,2,Aceite de batana Nanita,40,7.2,47.2,94.4
+79,2,Aceite de fenogreco Nanita,40,7.2,47.2,94.4
+80,2,Aceite de orégano Nanita,25,4.5,29.5,59
+81,2,Aceite de calabaza Nanita,25,4.5,29.5,59
+82,1,Aceite de incienso Nanita,25,4.5,29.5,29.5
+83,2,Drenaje linfático,40,7.2,47.2,94.4
+84,2,Aceite de ricino Gati,20,3.6,23.6,47.2
+85,2,Desodorantes naturales,25,4.5,29.5,59
+86,2,Ácido fólico Mason,40,7.2,47.2,94.4
+87,2,Ginkgo biloba Mason,65,11.7,76.7,153.4
+88,2,Luteín Mason,50,9,59,118
+,,,,,Sub total,7156.11
+,,,,,Moto,20
+,,,,,Total ,7176.11
+,,,,,,
+,,Saldo a Favor anterior,371.93,,,
+,,Deposito 1715 del 28/10/16,2000,,,
+,,Deposito 1714 del 28/10/26,5000,,,
+,,Total ,7371.93,,,
+,,,,,,
+,,Saldo a Favor actual ,195.82,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+PEDIDIO 004,,,,,2026-10-29,
+,,DESTINO,,,TARAPOTO,
+,Jaspre Mayorista ,,,,,
+,Cotización Oscar - Tarapoto,,,,,
+,Cantidad ,Producto ,Precio,igv,Precio Uni,Total
+,1,CAJON PANETON HONGOS DEL BOSQUE TELA,210,37.8,247.8,247.8
+,1,CAJON PANETON HONGOS CAJA,210,37.8,247.8,247.8
+,1,L-ARGININA 300 TABL. NUTRICOST,105,18.9,123.9,123.9
+,1,CAP ENZYMAS DIGESTIVAS NUTRICOST,80,14.4,94.4,94.4
+,2,CAP OMEGA 3 NUTRICOST,140,25.2,165.2,330.4
+,1,CAP B COMPLEX NUTRICOST,80,14.4,94.4,94.4
+,1,CAP SELENIUM EDENIS,60,10.8,70.8,70.8
+,1,CAP GLUCOSAMINE - CONDOTRINE EDENIS,110,19.8,129.8,129.8
+,1,CAP RELAXIN EXTRALIFE,60,10.8,70.8,70.8
+,1,CAP GLUTATION EXTRALIFE,80,14.4,94.4,94.4
+,1,CAP SILIMARINA EDENIS,95,17.1,112.1,112.1
+,1,CAP TRANSRESVERATROL EDENIS,120,21.6,141.6,141.6
+,1,CAP ASAWANDA EDENIS,90,16.2,106.2,106.2
+,1,CAJA DE HAPPY CLENER,50,9,59,59
+,1,COLA DE PAVO EDENIS EN POLVO,138,24.84,162.84,162.84
+,1,GEL INTIMO FEMENINO DRANSAVI,45,8.1,53.1,53.1
+,1,MAGNESIO + POTASIO AMERI POLVO,35,6.3,41.3,41.3
+,2,CAP B COMPLEX SUNDANCE,50,9,59,118
+,2,GOMAS MELATONINA KIDS SUNDANCE,40,7.2,47.2,94.4
+,2,BIOTINA 5000 SUNDANCE,35,6.3,41.3,82.6
+,1,GOMA PRENATAL SUNDANCE,40,7.2,47.2,47.2
+,1,VITAMINA E SUNDANCE,85,15.3,100.3,100.3
+,2,"HAIR, SKIN SUNDANCE",50,9,59,118
+,1,D3 2000 SUNDANCE,50,9,59,59
+,2,CAP MIO INOSITOL HERBAL MAXX,80,14.4,94.4,188.8
+,2,FLEXAXIL ULTRA 20 CAP,35,6.3,41.3,82.6
+,2,CAP AUDIX,30,5.4,35.4,70.8
+,2,JABON NEUTRO OLIVA,8,1.44,9.44,18.88
+,,,,,SUB TOTAL ,3161.22
+,,,,,MOTO,20
+,,,,,TOTAL,3181.22
+,,,,,,
+,,SALDO A FAVOR ,195.82,,,
+,,SALDO PENDIENTE,2985.4,,,
+,,,,,,
+,,,,,,
+PEDIDIO 004,,,,,2026-11-06,
+,,DESTINO,,,OSCAR VINO A TIENDA,
+,Jaspre Mayorista ,,,,,
+,Cotización Oscar - Tarapoto,,,,,
+,Cantidad ,Producto ,Precio,igv,Precio Uni,Total
+,1,CAJA PANETON HONGOS TELA,210,37.8,247.8,247.8
+,1,GOLDEN FLEX FUXION ,75,13.5,88.5,88.5
+,1,MELENA DE LEON SOBRE WASAY,40,7.2,47.2,47.2
+,1,TURRON MANA 1/2,12,2.16,14.16,14.16
+,1,CAJA SPIRBULL,35,6.3,41.3,41.3
+,1,PAN MASA MADRE LLOQUE,7,1.26,8.26,8.26
+,1,PAQ PALITO DE QUESO ,7.5,1.35,8.85,8.85
+,1,MACA NEGRA POTE,20,3.6,23.6,23.6
+,1,PAN ARABE CEDRO,6.5,1.17,7.67,7.67
+,1,RAPIDITA BIMBO LINAZA,8,1.44,9.44,9.44
+,12,TRUFAS CHOCOLATE,2,0.36,2.36,28.32
+,3,CHOCOLATES  CON QUINUA NUTRI BODY ,3,0.54,3.54,10.62
+,,,,,TOTAL,535.72
+,,,,,,
+,,SALDO PENDIENTE ANTERIOR ,2985.4,,,
+,,SALDO PENDIENTE ACTUAL ,3521.12,,,
+,,,,,,
+PEDIDIO 005,,,,,2026-11-18,
+,,DESTINO,,,OSCAR VINO A TIENDA,
+,Jaspre Mayorista ,,,,,
+,Cotización Oscar - Tarapoto,,,,,
+1,2,Biocenter Cápsulas de aguaje ,15,2.7,17.7,35.4
+2,2,Biocenter Carbón activado  (200 g),20,3.6,23.6,47.2
+3,2,Biolife Alka-M,75,13.5,88.5,177
+4,2,Biolife Althus ,75,13.5,88.5,177
+5,2,Bioliffe Eficlax,75,13.5,88.5,177
+6,2,Bionaturista  Citrato de magnesio  (250 g),25,4.5,29.5,59
+7,2,Bionaturista extracto Aloe Vera  ,25,4.5,29.5,59
+8,2,Bionaturista extracto Diab,25,4.5,29.5,59
+9,2,Bionaturista extracto Higa,25,4.5,29.5,59
+10,2,Bionaturista extracto Noni,25,4.5,29.5,59
+11,2,Bionaturista extracto Relix,25,4.5,29.5,59
+12,2,Bionaturista extracto Ren,25,4.5,29.5,59
+13,2,Bionova Garcinia cambogia Caja ,70,12.6,82.6,165.2
+14,2,Bioprost americano Cápsula,30,5.4,35.4,70.8
+15,2,Cápsulas de aguaje y maca roja,20,3.6,23.6,47.2
+16,2,Citrato de zinc – Biocenter Natural (250 g),25,4.5,29.5,59
+17,2,Colágeno multipéptido Americano Sobre,75,13.5,88.5,177
+18,2,Curcumax (300 g),12,2.16,14.16,28.32
+19,2,Ecovalle Arándanos Extracto,20,3.6,23.6,47.2
+20,2,Elyon Natural Cápsulas de aguaje ,15,2.7,17.7,35.4
+21,2,Filtrantes de flor de jamaica,9,1.62,10.62,21.24
+22,2,Filtrantes de Higazán (25 unidades),4.5,0.81,5.31,10.62
+23,2,Filtrantes de jengibre,4.5,0.81,5.31,10.62
+24,2,Filtrantes de muña con culen (25 unidades),4.5,0.81,5.31,10.62
+25,2,Filtrantes de té de jazmín,4.5,0.81,5.31,10.62
+26,2,Filtrantes de té rojo (25 unidades),4.5,0.81,5.31,10.62
+27,2,Filtrantes de té verde (100 unidades),4.5,0.81,5.31,10.62
+28,2,Filtrantes de té verde (25 unidades),4.5,0.81,5.31,10.62
+29,2,Filtrantes de té verde (60 unidades),9,1.62,10.62,21.24
+30,2,Filtrantes de té verde chino,5,0.9,5.9,11.8
+31,2,Filtrantes de té verde con arándano (25 unidades),4.5,0.81,5.31,10.62
+32,2,Filtrantes de té verde y frutos rojos,4.5,0.81,5.31,10.62
+33,2,Fito  center Maca negra + guanarpomacho  (500 g),35,6.3,41.3,82.6
+34,2,Fitosana Extracrto Alcachofa ,15,2.7,17.7,35.4
+35,2,Fitosana extracto Estomas ,15,2.7,17.7,35.4
+36,2,Fitosana extracto Fitopros,15,2.7,17.7,35.4
+37,2,Fitosana extracto higasol,15,2.7,17.7,35.4
+38,2,Fitosana extracto Noni,15,2.7,17.7,35.4
+39,2,Fitosana extracto sabila,15,2.7,17.7,35.4
+40,2,Fitosana Vinagre de manzana   (500 ml),8,1.44,9.44,18.88
+41,2,Fitosana Vinagre de manzana –  (1 litro),15,2.7,17.7,35.4
+42,2,For Life Nutrition Nad+Resveratrol  250 g,45,8.1,53.1,106.2
+43,2,Fuxion Bioprost Sport ,85,15.3,100.3,200.6
+44,2,Galletas Nutri H Azul,36,6.48,42.48,84.96
+45,2,Galletas Nutri H Roja,36,6.48,42.48,84.96
+46,2,Galletas Nutri H Verde ,36,6.48,42.48,84.96
+47,2,Gatty Leche de coco sobre,17,3.06,20.06,40.12
+48,2,Gelatina sin sabor 500 g Pote,22,3.96,25.96,51.92
+49,2,Gummix Alulosa,40,7.2,47.2,94.4
+50,2,Herbal Natural Clorofilas ,25,4.5,29.5,59
+51,2,Herbal Natural Fullvit12 ,40,7.2,47.2,94.4
+52,2,Herbal Natural Vuoto Caja,40,7.2,47.2,94.4
+53,2,Hierba santa Pitahaya Caja ,50,9,59,118
+54,2,Maranao Cápsulas de centella asiática ,50,9,59,118
+55,2,Maranao Cápsulas de guaraná ,50,9,59,118
+56,2,Maroana Cápsulas de melena de león ,50,9,59,118
+57,2,Meromacho extracto,30,5.4,35.4,70.8
+58,2,Natural Max extracto Savia de Platano ,15,2.7,17.7,35.4
+59,2,Natural Maxx  Melena de león (300 g),40,7.2,47.2,94.4
+60,2,Natural Maxx - Apple Vinegar Plus –  (150 tabletas),25,4.5,29.5,59
+61,2,Natural Maxx Biopros  (300 g),40,7.2,47.2,94.4
+62,2,Natural Maxx Graviola + cúrcuma + colágeno hidrolizado 150Tab,25,4.5,29.5,59
+63,2,Natural Maxx Omega 3-6-9 Sacha Inchi Cap,25,4.5,29.5,59
+64,2,Natural Medic Cápsulas de aguaje con hinojo y maca triple,20,3.6,23.6,47.2
+65,2,Olivos del Sur Miel de agave ,25,4.5,29.5,59
+66,2,Omnilife Aloe Beta 1 litro,55,9.9,64.9,129.8
+67,2,Punchao de cacao,12,2.16,14.16,28.32
+68,2,Stevia boliviana Grande,13,2.34,15.34,30.68
+69,2,Stevia Coronel 50g,45,8.1,53.1,106.2
+70,2,Stevia nacional grande,12,2.16,14.16,28.32
+71,2,Teoma Teo Energy Pote,75,13.5,88.5,177
+72,2,Tocosh Estar Bien (1 litro),10,1.8,11.8,23.6
+73,2,Tocosh Estar Bien (500 ml),5,0.9,5.9,11.8
+74,2,Tocosh Ricaltino (1 litro),15,2.7,17.7,35.4
+75,2,Tocosh Ricaltino (500 ml),8,1.44,9.44,18.88
+76,2,UN Creatina  (150 g),45,8.1,53.1,106.2
+,,,,,SUB TOTAL,4898.18
+,,,,,,
+,,DEPOSITO 0777464 18/11/26,5000,,,
+,,MENOS SALDO PENDIENTE ANTERIOR,3521.12,,,
+,,MENOS TOTAL DE ENVIO ACTUAL,4898.18,,,
+,,SALDO PENDIENTE ACTUAL,-3419.3,,,

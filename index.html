@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ContaPro - Auditor de Inventario y Despacho</title>
+  <meta name="theme-color" content="#1e293b">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Librería de escáner HTML5 QRCode para compatibilidad universal con cámaras móviles -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- Cliente MQTT ligero para sincronización en tiempo real vía WebSockets -->
+  <script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+  <!-- Librería SheetJS (XLSX) para importar/exportar Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    /* Ajustes táctiles para celular */
+    .touch-btn {
+      touch-action: manipulation;
+      user-select: none;
+    }
+    .safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+    #reader video {
+      object-fit: cover !important;
+      border-radius: 0.75rem;
+    }
+    /* Animación de escaneo */
+    @keyframes scanline {
+      0% { top: 5%; }
+      50% { top: 85%; }
+      100% { top: 5%; }
+    }
+    .scanner-line {
+      animation: scanline 2.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased select-none">
+
+  <!-- ENCABEZADO SUPERIOR -->
+  <header class="bg-slate-800/95 backdrop-blur border-b border-slate-700/80 sticky top-0 z-40 px-3 py-2.5 shadow-md">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg border border-emerald-500/40">
+          📦
+        </div>
+        <div>
+          <h1 class="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+            ContaPro <span class="text-xs font-semibold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auditor 2.0</span>
+          </h1>
+          <p id="pedido-subtitulo" class="text-[11px] text-slate-400 truncate max-w-[190px]">Cargando pedido...</p>
+        </div>
+      </div>
+
+      <!-- Estado de conexión multiusuario en tiempo real -->
+      <div class="flex items-center gap-1.5">
+        <button id="btn-sync-status" onclick="openRoomModal()" class="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full bg-slate-700 hover:bg-slate-600 border border-slate-600 transition">
+          <span id="sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span id="sync-label" class="text-slate-300 font-medium">Conectando...</span>
+        </button>
+
+        <button onclick="openMenuModal()" class="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-slate-200">
+          ⚙️
+        </button>
+      </div>
+    </div>
+
+    <!-- SELECTOR DE PEDIDO RÁPIDO -->
+    <div class="max-w-4xl mx-auto mt-2 pt-2 border-t border-slate-700/60 flex items-center gap-2">
+      <label class="text-[11px] text-slate-400 font-medium shrink-0">Pedido:</label>
+      <select id="select-pedido" onchange="cambiarPedido(this.value)" class="w-full bg-slate-900 border border-slate-600 text-slate-100 text-xs rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-emerald-500 focus:outline-none">
+        <!-- Opciones inyectadas dinámicamente -->
+      </select>
+    </div>
+  </header>
+
+  <!-- BARRA DE RESUMEN Y AVANCE (KPIs) -->
+  <section class="bg-slate-800/60 border-b border-slate-700 px-3 py-2">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center justify-between text-xs mb-1.5">
+        <span class="text-slate-300 font-semibold flex items-center gap-1">
+          Avance Físico:
+          <span id="kpi-porcentaje" class="text-emerald-400 font-bold">0%</span>
+        </span>
+        <span class="text-slate-400 text-[11px]">
+          <span id="kpi-contados" class="text-white font-bold">0</span> de <span id="kpi-total-items">0</span> ítems revisados
+        </span>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden flex">
+        <div id="progreso-ok" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
+        <div id="progreso-diff" class="bg-rose-500 h-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+
+      <!-- Métricas rápidas: OK, Faltantes, Sobrantes -->
+      <div class="grid grid-cols-4 gap-1.5 mt-2 text-center text-[10px]">
+        <button onclick="setFiltro('TODOS')" id="filtro-btn-TODOS" class="py-1 px-1.5 rounded bg-slate-700/80 text-white font-bold border border-slate-600">
+          Todos (<span id="count-todos">0</span>)
+        </button>
+        <button onclick="setFiltro('PENDIENTES')" id="filtro-btn-PENDIENTES" class="py-1 px-1.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+          Pend. (<span id="count-pendientes">0</span>)
+        </button>
+        <button onclick="setFiltro('OK')" id="filtro-btn-OK" class="py-1 px-1.5 rounded bg-slate-800 text-emerald-400 border border-slate-700">
+          OK (<span id="count-ok">0</span>)
+        </button>
+        <button onclick="setFiltro('DIFERENCIAS')" id="filtro-btn-DIFERENCIAS" class="py-1 px-1.5 rounded bg-slate-800 text-rose-400 border border-slate-700">
+          Discrep. (<span id="count-diff">0</span>)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTIFICACIÓN DE ACTIVIDAD DE LA OTRA PERSONA -->
+  <div id="activity-toast" class="hidden max-w-4xl mx-auto w-full px-3 pt-2">
+    <div class="bg-indigo-900/80 border border-indigo-500/50 rounded-lg px-3 py-1.5 text-xs text-indigo-200 flex items-center justify-between shadow-lg">
+      <div class="flex items-center gap-1.5 truncate">
+        <span>👥</span>
+        <span id="toast-text" class="truncate font-medium">Compañero contó 1 unidad...</span>
+      </div>
+      <button onclick="ocultarToast()" class="text-indigo-400 hover:text-white font-bold ml-2">✕</button>
+    </div>
+  </div>
+
+  <!-- BUSCADOR TÁCTIL RÁPIDO -->
+  <div class="max-w-4xl mx-auto w-full px-3 pt-2.5">
+    <div class="relative">
+      <input type="text" id="buscador-input" oninput="filtrarProductos(this.value)" placeholder="🔍 Buscar por nombre o código de barra..." class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50">
+      <button onclick="limpiarBuscador()" id="btn-limpiar-busq" class="hidden absolute right-3 top-2.5 text-slate-400 text-xs">✕</button>
+    </div>
+  </div>
+
+  <!-- LISTA PRINCIPAL DE PRODUCTOS A CONCILIAR -->
+  <main class="flex-1 max-w-4xl mx-auto w-full px-3 py-2.5 overflow-y-auto space-y-2 safe-bottom">
+    <div id="lista-productos" class="space-y-2">
+      <!-- Inyectado por JS -->
+    </div>
+  </main>
+
+  <!-- BARRA DE ACCIÓN FLOTANTE INFERIOR -->
+  <footer class="bg-slate-800/95 backdrop-blur border-t border-slate-700 sticky bottom-0 z-40 px-3 py-2.5 shadow-2xl safe-bottom">
+    <div class="max-w-4xl mx-auto flex items-center gap-2">
+      <!-- Botón de Cámara / Escáner -->
+      <button onclick="abrirEscanerCamara()" class="touch-btn flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 text-sm active:scale-95 transition">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>Escanear Código</span>
+      </button>
+
+      <!-- Botón de Resumen / Exportar -->
+      <button onclick="openResumenModal()" class="touch-btn bg-slate-700 hover:bg-slate-600 text-slate-100 font-semibold py-3 px-3.5 rounded-xl border border-slate-600 flex items-center justify-center gap-1.5 text-xs active:scale-95 transition">
+        <span>📊</span>
+        <span>Reporte</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: VISOR DE CÁMARA ESCÁNER EN VIVO                  -->
+  <!-- ======================================================== -->
+  <div id="modal-escaner" class="fixed inset-0 bg-black/90 z-50 hidden flex flex-col">
+    <!-- Header del escáner -->
+    <div class="px-4 py-3 bg-slate-900/90 flex items-center justify-between text-white border-b border-slate-800">
+      <div class="flex items-center gap-2">
+        <span class="text-emerald-400 text-lg">📷</span>
+        <div>
+          <h3 class="text-sm font-bold">Lector de Código de Barras</h3>
+          <p class="text-[11px] text-slate-400">Apunta la cámara al código del frasco o caja</p>
+        </div>
+      </div>
+      <button onclick="cerrarEscanerCamara()" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white text-sm font-bold">
+        ✕
+      </button>
+    </div>
+
+    <!-- Visor de la cámara con marco de puntería -->
+    <div class="flex-1 relative flex items-center justify-center p-3 bg-black">
+      <div id="reader" class="w-full max-w-sm rounded-xl overflow-hidden border-2 border-emerald-500/70 relative"></div>
+      
+      <!-- Guía visual de escaneo -->
+      <div class="absolute w-64 h-44 border-2 border-dashed border-emerald-400/80 rounded-xl pointer-events-none flex flex-col justify-between p-2">
+        <div class="w-full h-0.5 bg-emerald-400 scanner-line shadow-[0_0_8px_#34d399]"></div>
+        <p class="text-center text-[11px] text-emerald-300 font-semibold bg-black/60 py-0.5 rounded backdrop-blur">
+          Centra el código de barras
+        </p>
+      </div>
+    </div>
+
+    <!-- Feedback del último escaneo -->
+    <div class="p-3 bg-slate-900/95 border-t border-slate-800 safe-bottom">
+      <div id="scanner-feedback" class="text-center text-xs text-slate-300 py-1 font-medium">
+        Esperando lectura de código...
+      </div>
+      <div class="mt-2 flex gap-2">
+        <button onclick="toggleFlash()" id="btn-flash" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 py-2 rounded-lg text-xs font-medium border border-slate-700">
+          🔦 Linterna
+        </button>
+        <button onclick="cerrarEscanerCamara()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 py-2 rounded-lg text-xs font-medium border border-slate-700">
+          Listo / Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ASOCIAR CÓDIGO NUEVO A PRODUCTO (AUTOAPRENDIZAJE) -->
+  <!-- ======================================================== -->
+  <div id="modal-asociar-codigo" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-3">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-4 shadow-2xl flex flex-col max-h-[85vh]">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-700">
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+            <span>✨</span> Nuevo Código Detectado
+          </h3>
+          <p class="text-xs text-emerald-400 font-mono mt-0.5" id="lbl-codigo-nuevo">000000000000</p>
+        </div>
+        <button onclick="cerrarModalAsociar()" class="text-slate-400 hover:text-white font-bold">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-300 my-2">
+        ¿A qué producto de tu lista de pedido corresponde este código? Selecciona uno para memorizarlo:
+      </p>
+
+      <input type="text" id="asociar-filtro" oninput="filtrarParaAsociar(this.value)" placeholder="Filtrar por nombre..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white mb-2 focus:ring-1 focus:ring-emerald-500 focus:outline-none">
+
+      <div id="asociar-lista" class="flex-1 overflow-y-auto space-y-1.5 pr-1 max-h-60 text-xs">
+        <!-- Lista de opciones inyectada por JS -->
+      </div>
+
+      <div class="pt-2 border-t border-slate-700 mt-2 flex justify-end">
+        <button onclick="cerrarModalAsociar()" class="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 text-xs font-medium">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: SALA MULTIUSUARIO EN TIEMPO REAL (DATOS MÓVILES)  -->
+  <!-- ======================================================== -->
+  <div id="modal-room" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-3">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-700">
+        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+          <span>👥</span> Sincronización 2 Personas (En Vivo)
+        </h3>
+        <button onclick="closeRoomModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+      </div>
+
+      <div class="space-y-3 my-3 text-xs">
+        <p class="text-slate-300">
+          Ambos deben tener el mismo <strong>Código de Sala</strong> para que los conteos de cada uno se sumen en tiempo real con datos móviles:
+        </p>
+
+        <div>
+          <label class="block text-slate-400 mb-1 font-medium">Tu Nombre o Apodo:</label>
+          <input type="text" id="input-username" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-medium focus:ring-1 focus:ring-emerald-500 focus:outline-none" placeholder="Ej: Juan, Oscar...">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1 font-medium">Código de la Sala Compartida:</label>
+          <div class="flex gap-2">
+            <input type="text" id="input-room" class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono uppercase font-bold tracking-wider focus:ring-1 focus:ring-emerald-500 focus:outline-none" placeholder="TARAPOTO-2026">
+            <button onclick="generarSalaAleatoria()" class="px-2.5 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 text-xs font-semibold">
+              🎲 Nueva
+            </button>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-700/60 text-[11px] text-slate-400 space-y-1">
+          <p>📡 <strong>Estado:</strong> <span id="room-status-text" class="text-amber-400 font-semibold">Desconectado</span></p>
+          <p>ℹ️ Funciona con cualquier conexión a Internet 4G/5G sin necesidad de compartir la misma red Wi-Fi.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2 border-t border-slate-700">
+        <button onclick="closeRoomModal()" class="flex-1 py-2 rounded-lg bg-slate-700 text-slate-300 text-xs font-medium">
+          Cerrar
+        </button>
+        <button onclick="guardarYConectarSala()" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">
+          Conectar Ahora
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: REPORTE DE DISCREPANCIAS Y EXPORTACIÓN           -->
+  <!-- ======================================================== -->
+  <div id="modal-resumen" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-3">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-lg w-full p-4 shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-700">
+        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+          <span>📊</span> Resumen y Conciliación Final
+        </h3>
+        <button onclick="closeResumenModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+      </div>
+
+      <!-- Resumen estadístico -->
+      <div class="grid grid-cols-3 gap-2 my-3 text-center">
+        <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-700">
+          <div class="text-[10px] text-slate-400 font-medium">Conformes (OK)</div>
+          <div id="resumen-ok" class="text-base font-bold text-emerald-400">0</div>
+        </div>
+        <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-700">
+          <div class="text-[10px] text-slate-400 font-medium">Faltantes</div>
+          <div id="resumen-faltantes" class="text-base font-bold text-rose-400">0</div>
+        </div>
+        <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-700">
+          <div class="text-[10px] text-slate-400 font-medium">Sobrantes</div>
+          <div id="resumen-sobrantes" class="text-base font-bold text-amber-400">0</div>
+        </div>
+      </div>
+
+      <div class="text-xs font-semibold text-slate-300 mb-1 flex items-center justify-between">
+        <span>Detalle de Diferencias Encontradas:</span>
+        <span id="resumen-total-diff-val" class="text-rose-400 text-[11px] font-bold"></span>
+      </div>
+
+      <div id="resumen-lista-diferencias" class="flex-1 overflow-y-auto space-y-1.5 pr-1 max-h-56 text-xs bg-slate-900/50 p-2 rounded-xl border border-slate-700/60">
+        <!-- Inyectado por JS -->
+      </div>
+
+      <!-- Botones de descarga y reinicio -->
+      <div class="pt-3 border-t border-slate-700 mt-3 space-y-2">
+        <div class="flex gap-2">
+          <button onclick="exportarExcelAuditoria()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md">
+            <span>📥</span> Descargar Excel de Auditoría
+          </button>
+          <button onclick="copiarReportePortapapeles()" class="py-2.5 px-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium">
+            📋 Copiar
+          </button>
+        </div>
+        <button onclick="confirmarReinicioPedido()" class="w-full py-1.5 text-[11px] text-slate-400 hover:text-rose-400 transition">
+          ⚠️ Reiniciar conteo físico de este pedido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: AJUSTES / IMPORTAR EXCEL PROPIO                   -->
+  <!-- ======================================================== -->
+  <div id="modal-menu" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-3">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-4 shadow-2xl space-y-3">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-700">
+        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+          <span>⚙️</span> Opciones y Carga de Archivos
+        </h3>
+        <button onclick="closeMenuModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+      </div>
+
+      <div class="text-xs space-y-2 text-slate-300">
+        <p class="font-medium">¿Tienes un nuevo pedido en archivo Excel (.xlsx / .csv)?</p>
+        <p class="text-[11px] text-slate-400">Puedes cargar cualquier nuevo archivo para auditarlo directamente:</p>
+        
+        <input type="file" id="file-excel-import" accept=".xlsx,.xls,.csv" class="block w-full text-xs text-slate-400 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-500">
+      </div>
+
+      <div class="pt-2 border-t border-slate-700 flex justify-between items-center text-xs text-slate-400">
+        <span>ContaPro ERP & Inventarios</span>
+        <button onclick="closeMenuModal()" class="px-3 py-1.5 bg-slate-700 text-white rounded-lg">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sonido de pitido para confirmación de escaneo (Audio sintetizado sin dependencias) -->
+  <script>
+    function playBeep() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1400, audioCtx.currentTime); // 1.4 kHz tono agudo y claro
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {
+        console.warn('AudioContext no disponible', e);
+      }
+      if (navigator.vibrate) {
+        navigator.vibrate(80); // Vibración breve
+      }
+    }
+  </script>
+
+  <!-- Script principal de la aplicación -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
